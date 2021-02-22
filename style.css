@@ -29,6 +29,7 @@ header h1{
     justify-content: center;
     align-items: center;
     box-shadow: 5px 5px;
+    padding-bottom: 20px;
 }
 
 li{
@@ -45,9 +46,47 @@ li{
     font-weight: bold;
     font-size: 20px;
     margin-top: 20px;
+    transition: 0.5s;
+}
+
+li:hover{
+    opacity: 0.5;
 }
 
 ul{
     width: 100%;
     margin: auto;
+}
+
+
+#user-input{
+    background: #C4C4C4;
+    width: 50%;
+    margin: auto;
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
+    border-radius: 25px;
+    box-shadow: 5px 3px;
+}
+
+#add-icon{
+    scale: 0.6;
+}
+
+#song-input{
+    flex: 1;
+    background: #C4C4C4;
+    border: none;
+    border-radius: 25px;
+    padding-left: 30px;
+    outline: none;
+    font-size: 15px;
+    font-weight: bold;
+    color: black;
+}
+
+ul h1{
+    text-align: center;
 }

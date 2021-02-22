@@ -11,7 +11,7 @@
 </head>
 <body>
     <header>
-        <h1>John's top 5 songs</h1>
+        <h1>Your top X songs</h1>
     </header>
     <div class="list-container">
         <ul>
@@ -19,7 +19,12 @@
             <li>vultures</li>
         </ul>
     </div>
-    
+
+    <form id="user-input">
+        <input type="text" id="song-input" placeholder="add a song..." name="songInput">    
+        <input type="image" value="submit" src="plus.png" id="add-icon">
+    </form>
+
     <script src="app.js"></script>
 </body>
 </html>
