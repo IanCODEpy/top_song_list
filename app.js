@@ -1,41 +1,63 @@
-// Adding songs functionality
-const textboxInput = document.querySelector('#user-input');
+//Adding songs functionality
+const form = document.querySelector('#user-input');
+const ul = document.querySelector('ul');
+const deafaultList = document.querySelector('.list-container > ul > h1')
 
-textboxInput.addEventListener('submit', e =>{
-
-    const allLis = document.querySelectorAll('.list-container > ul > li'); //querying all li's into node list
-    const title = document.querySelector('header > h1'); //querying the title text 
-    const list = document.querySelector('.list-container > ul'); //grabing the ul to add li element
-
+form.addEventListener('submit', e =>{
     e.preventDefault();
-    let result = textboxInput.songInput.value; //text user typed in
-    let userSongsNumber = allLis.length;
 
-    //Only add if there is text in the textbox
-    if(result){
-        //creating new list item
-        const listItem = document.createElement('li');
-        listItem.textContent = result;
-        list.append(listItem);
-        textboxInput.reset();
+    let inputSongName = form.songInput.value
+
+    //Empty strings cannot be added
+    if(inputSongName){
+        const liEle = document.createElement('li');
+        liEle.textContent = inputSongName;
+        ul.append(liEle);
+        form.reset();
+        deafaultList.remove();
+        }
+
+    // Updating the title to reflect how many songs has in list
+    const allLis = document.querySelectorAll('li');
+    const titleNum = document.querySelector('header > h1');
+    let numSongs = allLis.length;
+    titleNum.textContent = `Your top ${numSongs} songs`;
+
+});
+
+//Removing songs functionality
+ul.addEventListener('click', e=>{
+    if(e.target.tagName == 'LI'){
+        e.target.remove();
     }
 
-    //checking if there are no songs or user cleared the list
-    if(allLis === 0){
-        const noSongs = document.createElement('h1');
-        noSongs.textContent = 'You have no songs :(';
-        list.append(noSongs);  
-    }
+    //checking if list is now empty (if so update the user)
+    const allLis = document.querySelectorAll('li');
+
+    if(allLis.length == 0){
+        const listcontainer = document.querySelector('.list-container > ul');
+        const noSongsTitle = document.createElement('h1');
+
+        noSongsTitle.textContent = "You have no songs :(" //remove if list is populated again
+        listcontainer.append(noSongsTitle);
     
-    //numerating each song
-    allLis.forEach((ele,pos) =>{
-        ele.textContent = `${pos + 1}. ` + ele.textContent;
-    });
+    }
 
-    title.textContent =  `Your top ${userSongsNumber + 1} songs`;
+    // Updating the title to reflect how many songs has in list
+    
+    const titleNum = document.querySelector('header > h1');
+    let numSongs = allLis.length;
+    titleNum.textContent = `Your top ${numSongs} songs`;
+    const p = document.createElement('p');
+
+    //Enmerating the songs
+    allLis.forEach((ele,pos) =>{
+        
+        p.textContent = `${pos+1}.`;
+        ele.prepend(p);
+    });
 
 });
 
 
-
-//probably gonna need to calculate every time the mouse moves or!!!!
+//clicking on 'add more songs generates stuff user message'
