@@ -13,12 +13,14 @@ form.addEventListener('submit', e =>{
         let liEle = document.createElement('li');
 
         if(document.querySelector('.list-container > ul > h1') != null){
-        const deafaultList = document.querySelector('.list-container > ul > h1');
+        let deafaultList = document.querySelector('.list-container > ul > h1');
+        deafaultList.remove(); //moved this here from line 23
         }
+        
         liEle.textContent = inputSongName;
         ul.append(liEle);
         form.reset();
-        deafaultList.remove();
+        
         }
 
     // Updating the title to reflect how many songs has in list
@@ -26,7 +28,7 @@ form.addEventListener('submit', e =>{
     const titleNum = document.querySelector('header > h1');
     let numSongs = allLis.length;
     titleNum.textContent = `Your top ${numSongs} songs`;
-
+    console.log(numSongs);
 
 });
 
@@ -55,5 +57,3 @@ ul.addEventListener('click', e=>{
 
 });
 
-
-// Line 15 to 17 if the condition is removed the code runs fine and will only throw a null error, please look
