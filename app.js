@@ -2,6 +2,7 @@
 const form = document.querySelector('#user-input');
 const ul = document.querySelector('ul');
 const deafaultList = document.querySelector('.list-container > ul > h1')
+const search = document.querySelector('#search-bar')
 
 form.addEventListener('submit', e =>{
     e.preventDefault();
@@ -28,7 +29,6 @@ form.addEventListener('submit', e =>{
     const titleNum = document.querySelector('header > h1');
     let numSongs = allLis.length;
     titleNum.textContent = `Your top ${numSongs} songs`;
-    console.log(numSongs);
 
 });
 
@@ -55,5 +55,36 @@ ul.addEventListener('click', e=>{
     let numSongs = allLis.length;
     titleNum.textContent = `Your top ${numSongs} songs`;
 
+});
+
+
+// Search functionality
+
+//Filtering results
+const filterFunc = term =>{
+
+    // Hides LI element if does not include term
+    Array.from(ul.children)
+        .filter((listElelment) =>{
+            return !listElelment.textContent.toLowerCase().includes(term);
+        })
+        .forEach(element => {
+            element.classList.add('hidden');
+        });
+
+    //Shows LI element if includes term
+    Array.from(ul.children)
+        .filter(listElelment =>{
+            return listElelment.textContent.toLowerCase().includes(term);
+        })
+        .forEach(element => {
+            element.classList.remove('hidden');
+        });
+};
+
+// Grabbing text 
+search.addEventListener('keyup', () =>{
+    let term = search.value.trim().toLowerCase();
+    filterFunc(term);
 });
 
